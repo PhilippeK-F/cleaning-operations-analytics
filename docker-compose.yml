@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: cleaning-analytics-postgres
+    environment:
+      POSTGRES_DB: cleaning_analytics
+      POSTGRES_USER: cleaning
+      POSTGRES_PASSWORD: cleaning
+    ports:
+      - "5436:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.streamlit
+    container_name: cleaning-analytics-streamlit
+    depends_on:
+      - postgres
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - ./app:/app/app
+      - ./data:/app/data
+
+volumes:
+  postgres_data:

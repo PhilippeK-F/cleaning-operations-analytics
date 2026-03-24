@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS cleaning_tasks (
+    task_id TEXT PRIMARY KEY,
+    site_id TEXT,
+    site_name TEXT,
+    zone_id TEXT,
+    zone_name TEXT,
+    zone_type TEXT,
+    task_type TEXT,
+    cleaning_method TEXT,
+    estimated_duration_min INTEGER,
+    cleaning_team TEXT,
+    scheduled_date TIMESTAMP,
+    completed_date TIMESTAMP,
+    status TEXT,
+    dirt_level INTEGER,
+    risk_level TEXT,
+    foot_traffic TEXT,
+    days_since_last_cleaning INTEGER,
+    quality_score DOUBLE PRECISION,
+    priority_score INTEGER
+    latitude DOUBLE PRECISION,
+    longitude DOUBLE PRECISION,
+);
